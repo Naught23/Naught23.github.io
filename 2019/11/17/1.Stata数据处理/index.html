@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>1.Stata数据处理 | Hexo</title>
+  <title>Stata数据处理 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.Stata数据处理Stata14安装ssc install asdoc, replace &#x2F;&#x2F;导入输出命令 1.数据打开use “E:\data\suto.dta”sysuse suro.dta 打开部分变量：use make price using &amp;quot;E:\data\suto.dta&amp;quot;打开部分样本：use &amp;quot;E:\data\suto.dta&amp;quot; in 5">
+  <meta name="description" content="stata基础数据处理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1.Stata数据处理">
+<meta property="og:title" content="Stata数据处理">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;17&#x2F;1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.Stata数据处理Stata14安装ssc install asdoc, replace &#x2F;&#x2F;导入输出命令 1.数据打开use “E:\data\suto.dta”sysuse suro.dta 打开部分变量：use make price using &amp;quot;E:\data\suto.dta&amp;quot;打开部分样本：use &amp;quot;E:\data\suto.dta&amp;quot; in 5">
+<meta property="og:description" content="stata基础数据处理">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-5d3e29eb12cef5fd.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-74d56953043e8e42.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-e9cea76b1d363b98.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
-<meta property="og:updated_time" content="2019-11-17T11:02:45.411Z">
+<meta property="og:updated_time" content="2019-11-17T11:13:40.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-5d3e29eb12cef5fd.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
   
@@ -163,21 +163,22 @@
         
   
     <h1 class="article-title" itemprop="name">
-      1.Stata数据处理
+      Stata数据处理
     </h1>
   
 
         
         <a href="/2019/11/17/1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="archive-article-date">
-  	<time datetime="2019-11-17T10:50:57.029Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+  	<time datetime="2019-11-17T11:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Stata数据处理"><a href="#1-Stata数据处理" class="headerlink" title="1.Stata数据处理"></a>1.Stata数据处理</h1><p><a href="https://blog.csdn.net/hanleiliu/article/details/97827960" target="_blank" rel="noopener">Stata14安装</a><br><code>ssc install asdoc, replace</code> //导入输出命令</p>
-<h2 id="1-数据打开"><a href="#1-数据打开" class="headerlink" title="1.数据打开"></a>1.数据打开</h2><p>use “E:\data\suto.dta”<br>sysuse suro.dta</p>
+        <h2 id="1-数据打开"><a href="#1-数据打开" class="headerlink" title="1.数据打开"></a>1.数据打开</h2><p><a href="https://blog.csdn.net/hanleiliu/article/details/97827960" target="_blank" rel="noopener">Stata14安装</a></p>
+<p><code>ssc install asdoc, replace</code>//导入输出命令</p>
+<p><code>use &quot;E:\data\suto.dta&quot;</code><br><code>sysuse suro.dta</code></p>
 <p>打开部分变量：<code>use make price using &quot;E:\data\suto.dta&quot;</code><br>打开部分样本：<code>use &quot;E:\data\suto.dta&quot; in 5/10（第5个到10）</code><br>打开某些特征样本：<code>use &quot;E:\data\suto.dta&quot; if foreign=1</code><br>打开网络数据 <code>use http://www.stata-press.com/data/r9/nlswork</code></p>
 <h3 id="1-2-数据的类型和压缩"><a href="#1-2-数据的类型和压缩" class="headerlink" title="1.2. 数据的类型和压缩"></a>1.2. 数据的类型和压缩</h3><h4 id="1-2-1-数据类型"><a href="#1-2-1-数据类型" class="headerlink" title="1.2.1 数据类型"></a>1.2.1 数据类型</h4><ol>
 <li>数值型</li>
@@ -354,18 +355,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          2.stata方差分析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/11/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">stata方差分析</div>
       <i class="icon-circle-right"></i>
     </a>
   

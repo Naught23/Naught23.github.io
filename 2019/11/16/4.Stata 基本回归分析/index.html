@@ -6,17 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>5. Stata 与模型的设定 | Hexo</title>
+  <title>Stata 基本回归分析 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="5. Stata 与模型的设定1.虚拟变量处理">
+  <meta name="description" content="简单回归">
 <meta property="og:type" content="article">
-<meta property="og:title" content="5. Stata 与模型的设定">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;17&#x2F;5.%20Stata%20%E4%B8%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%BE%E5%AE%9A&#x2F;index.html">
+<meta property="og:title" content="Stata 基本回归分析">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="5. Stata 与模型的设定1.虚拟变量处理">
+<meta property="og:description" content="简单回归">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-17T11:04:31.727Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-d324b55ecad089be.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-dc1b8d63899e4c68.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-7ef68503d65b68ae.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-7c9f0afcf10786fb.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-8cb197615bc3a16c.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-1f8c4e76c05c609d.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-0a92677bd0759738.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-0154c5757a9e26e4.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-f8ad9edc3e0abb13.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-565840c2e03cab5d.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-3b3832b2aeca01e4.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-8698c4c8f6a87fad.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-6cdc6162407be85c.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-b7fe5d0dee012cc9.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-2ab2cdbe0caf7f57.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-fc9d88f56b75ff3a.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-174d52b90c526f90.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta property="og:updated_time" content="2019-11-17T11:09:47.804Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-d324b55ecad089be.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -152,27 +170,56 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-5. Stata 与模型的设定" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-4.Stata 基本回归分析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      5. Stata 与模型的设定
+      Stata 基本回归分析
     </h1>
   
 
         
-        <a href="/2019/11/17/5.%20Stata%20%E4%B8%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%BE%E5%AE%9A/" class="archive-article-date">
-  	<time datetime="2019-11-17T11:04:29.580Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+        <a href="/2019/11/16/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2019-11-16T11:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="5-Stata-与模型的设定"><a href="#5-Stata-与模型的设定" class="headerlink" title="5. Stata 与模型的设定"></a>5. Stata 与模型的设定</h1><h2 id="1-虚拟变量处理"><a href="#1-虚拟变量处理" class="headerlink" title="1.虚拟变量处理"></a>1.虚拟变量处理</h2>
+        <p>普通最小二乘估计方法( Ordinary Least Square ，简记为OLS) ，是单一方程线性回归模型最常用、最基本的估计方法。</p>
+<h2 id="1-小样本的普通最小二乘法分析"><a href="#1-小样本的普通最小二乘法分析" class="headerlink" title="1.小样本的普通最小二乘法分析"></a>1.小样本的普通最小二乘法分析</h2><p>OLS 的基本思想就是通过让残差e 的平方和最小，从而使得模型的估计成为可能。 </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-d324b55ecad089be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="实验原理"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-dc1b8d63899e4c68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#打开数据文件、观测数据特征</span><br><span class="line">sysuse usaauto,clear</span><br><span class="line">edit #关注一下原始数据及其统计特征</span><br><span class="line">describe #数据的统计特征</span><br><span class="line">regres s price mpg weight foreign #price 作为因变量， mpg、weigbt 、foreign 作为自变量建立线性回归模型，运用OLS 方法进行回归分析。</span><br><span class="line">#基本回归分析之后，还要对模型的整体和系数进行检验，以求证其是否符合经济理论或现实情况的要求。</span><br><span class="line">#（1）线性检验</span><br><span class="line"># （2）非线性检验</span><br><span class="line">test weight foreign# (也可以输入test (weight=0)(foreign=0) </span><br><span class="line">#模型的预测</span><br><span class="line">predict yhat , xb #线性预测拟合值，生成的变量名称为yhat </span><br><span class="line">predi ct e , residual #残差序列的预测值，生成的变量名称为e。</span><br><span class="line">list #显示，每个观测值信息的最后出现了新变量yhat.</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-7ef68503d65b68ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="实验原假设为weight=foreign=0. 而实际的检验结果是小概率事件发生的可能性为0 . 所
+以拒绝原假设. weight 和foreign 的系数均显著不为零。"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-7c9f0afcf10786fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="2-大样本的普通最小二乘分析"><a href="#2-大样本的普通最小二乘分析" class="headerlink" title="2.大样本的普通最小二乘分析"></a>2.大样本的普通最小二乘分析</h2><p><img src="https://upload-images.jianshu.io/upload_images/18342389-8cb197615bc3a16c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="1-模型建立"><a href="#1-模型建立" class="headerlink" title="1.模型建立"></a>1.模型建立</h3><p><img src="https://upload-images.jianshu.io/upload_images/18342389-1f8c4e76c05c609d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="2-使用小样本理论进行回归"><a href="#2-使用小样本理论进行回归" class="headerlink" title="2.使用小样本理论进行回归"></a>2.使用小样本理论进行回归</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">regress lntc lnq lnpl lnpk lnpr</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-0a92677bd0759738.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="3-使用大样本理论进行回归"><a href="#3-使用大样本理论进行回归" class="headerlink" title="3.使用大样本理论进行回归"></a>3.使用大样本理论进行回归</h3><p>​      大样本OLS 经常采用稳健标准差估计（robust ) 。稳健标准差是指其标准差对于模型中可能存在的<strong><a href="https://wenku.baidu.com/view/71d50383d4d8d15abe234ede.html" target="_blank" rel="noopener">异方差</a></strong>或<strong><a href="https://wenku.baidu.com/view/5cdb89c95a8102d277a22fb2.html?rec_flag=default&sxts=1573608507953" target="_blank" rel="noopener">自相关</a></strong>问题不敏感，基于稳健标准差计算的稳健t 统计量仍然渐近服从t 分布。在Stata 中利用robust 选项可以得到异方差稳健估计量。</p>
+<p> <code>regress lntc lnq lnpl lnpk lnpr , robust</code><br><img src="https://upload-images.jianshu.io/upload_images/18342389-0154c5757a9e26e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="4-结果对比"><a href="#4-结果对比" class="headerlink" title="4.结果对比"></a>4.结果对比</h3><blockquote>
+<p>​       从这两个结果可以看到:稳健标准差与普通标准差估计的系数相同，但标准差和t 值存在一定的差别。在现实社会的各种数据中，很少有数据能够满足小样本理论的严格假设，所以当样本数据足够大时，我们最好采用稳健标准差进行估计和检验，这样得到的结果将会更加准确。</p>
+</blockquote>
+<h2 id="3-约束回归"><a href="#3-约束回归" class="headerlink" title="3. 约束回归"></a>3. 约束回归</h2><p><img src="https://upload-images.jianshu.io/upload_images/18342389-f8ad9edc3e0abb13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="1-约束的定义、列出和取消"><a href="#1-约束的定义、列出和取消" class="headerlink" title="1.约束的定义、列出和取消"></a>1.约束的定义、列出和取消</h3><p><img src="https://upload-images.jianshu.io/upload_images/18342389-565840c2e03cab5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>  若要删掉某个或几个己定义的约束，则可使用以下语句:<br> <code>constraint drop [numlistl_all]</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnsreg mpg price weight d~spl gear ratio foreign length, c(1-5)</span><br><span class="line"> #mpg 是被解释变量的名称， price weight displ gear ratio foreign length 为各个解释变量的名称， c(1-5)表示在1-5 个约束之下进行回归。</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-3b3832b2aeca01e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="非线性最小二乘"><a href="#非线性最小二乘" class="headerlink" title="非线性最小二乘"></a>非线性最小二乘</h2><p>​       如果将自变量与因变量的关系设为线性关系加一个误差项，那么我们就设定了一个线性模型。同样地，如果将自变量与因变量的关系设定为非线性关系加上一个误差工页，我们就得到了非线性模型。这里介绍的是没有办法转化为线性回归的回归模型。<br>​      对于非线性模型，可以通过非线性最小二乘CNonlinear Least Square, NLS) 来求出模型估计量。与普通最小二乘法类似，非线性最小二乘法也是要选择估计量盲，使得残差平方和最小。通常情况下，非线性最小二乘没有解析解，故一般使用数值方法求解。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-8698c4c8f6a87fad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/18342389-6cdc6162407be85c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-b7fe5d0dee012cc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-2ab2cdbe0caf7f57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-fc9d88f56b75ff3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-174d52b90c526f90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>参考：<br>《stata统计分析与应用》第二版 周光肃等著</p>
+
       
 
       
@@ -251,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/17/5.%20Stata%20%E4%B8%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%BE%E5%AE%9A/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/16/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -265,11 +312,15 @@
   
 <nav id="article-nav">
   
-  
-    <a href="/2019/11/17/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">4.Stata 基本回归分析</div>
-      <i class="icon-circle-right"></i>
+    <a href="/2019/11/17/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
     </a>
+  
   
 </nav>
 

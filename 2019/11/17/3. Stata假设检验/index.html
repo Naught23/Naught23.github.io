@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>3. Stata假设检验 | Hexo</title>
+  <title>Stata假设检验 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="3. Stata假设检验 假设检验是统计分析中常用的一种重要方法。所谓假设是指任何一个有关随机变量未知分布的统计假定，所谓假设检验是指对一个样本进行考察，从而决定它能否合理地被认为与假设相符的过程。假设检验的根本目的是要区分系统差异和抽样误差。  1.单个总体的假设检验单个总体的假设检验是利用某些检验统计量对样本的均值（μ。）、方差（σ2）进行检验， 主要分为三种情形。  己知方差σ2 ， 检验假">
+  <meta name="description" content="假设检验数学介绍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3. Stata假设检验">
+<meta property="og:title" content="Stata假设检验">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;17&#x2F;3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="3. Stata假设检验 假设检验是统计分析中常用的一种重要方法。所谓假设是指任何一个有关随机变量未知分布的统计假定，所谓假设检验是指对一个样本进行考察，从而决定它能否合理地被认为与假设相符的过程。假设检验的根本目的是要区分系统差异和抽样误差。  1.单个总体的假设检验单个总体的假设检验是利用某些检验统计量对样本的均值（μ。）、方差（σ2）进行检验， 主要分为三种情形。  己知方差σ2 ， 检验假">
+<meta property="og:description" content="假设检验数学介绍">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-b93794ee14417cfa.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-cd27f20b47edc5fd.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-554412fdbfc5f36d.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-9feb9928068817fa.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-0bd4ec614ca75c02.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
-<meta property="og:updated_time" content="2019-11-17T11:03:39.808Z">
+<meta property="og:updated_time" content="2019-11-17T11:10:34.968Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;18342389-b93794ee14417cfa.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
   
@@ -165,20 +165,20 @@
         
   
     <h1 class="article-title" itemprop="name">
-      3. Stata假设检验
+      Stata假设检验
     </h1>
   
 
         
         <a href="/2019/11/17/3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" class="archive-article-date">
-  	<time datetime="2019-11-17T10:56:53.705Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+  	<time datetime="2019-11-17T11:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="3-Stata假设检验"><a href="#3-Stata假设检验" class="headerlink" title="3. Stata假设检验"></a>3. Stata假设检验</h1><blockquote>
+        <blockquote>
 <p>假设检验是统计分析中常用的一种重要方法。所谓假设是指任何一个有关随机变量未知分布的统计假定，所谓假设检验是指对一个样本进行考察，从而决定它能否合理地被认为与假设相符的过程。<strong>假设检验的根本目的是要区分系统差异和抽样误差。</strong></p>
 </blockquote>
 <h2 id="1-单个总体的假设检验"><a href="#1-单个总体的假设检验" class="headerlink" title="1.单个总体的假设检验"></a>1.单个总体的假设检验</h2><p>单个总体的假设检验是利用某些检验统计量对样本的均值（μ。）、方差（σ2）进行检验， 主要分为三种情形。</p>
@@ -290,18 +290,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/11/17/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          4.Stata 基本回归分析
+          stata方差分析
         
       </div>
     </a>
   
   
-    <a href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">2.stata方差分析</div>
+    <a href="/2019/11/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
       <i class="icon-circle-right"></i>
     </a>
   
