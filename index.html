@@ -151,27 +151,27 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-5. Stata 与模型的设定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/17/first-blog/">first-blog</a>
+      <a class="article-title" href="/2019/11/17/5.%20Stata%20%E4%B8%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%BE%E5%AE%9A/">5. Stata 与模型的设定</a>
     </h1>
   
 
         
-        <a href="/2019/11/17/first-blog/" class="archive-article-date">
-  	<time datetime="2019-11-17T09:49:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+        <a href="/2019/11/17/5.%20Stata%20%E4%B8%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%BE%E5%AE%9A/" class="archive-article-date">
+  	<time datetime="2019-11-17T11:04:29.580Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="5-Stata-与模型的设定"><a href="#5-Stata-与模型的设定" class="headerlink" title="5. Stata 与模型的设定"></a>5. Stata 与模型的设定</h1><h2 id="1-虚拟变量处理"><a href="#1-虚拟变量处理" class="headerlink" title="1.虚拟变量处理"></a>1.虚拟变量处理</h2>
       
 
       
@@ -183,7 +183,409 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/17/first-blog/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/11/17/5.%20Stata%20%E4%B8%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%BE%E5%AE%9A/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-4.Stata 基本回归分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/17/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/">4.Stata 基本回归分析</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/17/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2019-11-17T11:00:51.658Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4-Stata-基本回归分析"><a href="#4-Stata-基本回归分析" class="headerlink" title="4.Stata 基本回归分析"></a>4.Stata 基本回归分析</h1><p>普通最小二乘估计方法( Ordinary Least Square ，简记为OLS) ，是单一方程线性回归模型最常用、最基本的估计方法。</p>
+<h2 id="1-小样本的普通最小二乘法分析"><a href="#1-小样本的普通最小二乘法分析" class="headerlink" title="1.小样本的普通最小二乘法分析"></a>1.小样本的普通最小二乘法分析</h2><p>OLS 的基本思想就是通过让残差e 的平方和最小，从而使得模型的估计成为可能。 </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-d324b55ecad089be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="实验原理"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-dc1b8d63899e4c68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#打开数据文件、观测数据特征</span><br><span class="line">sysuse usaauto,clear</span><br><span class="line">edit #关注一下原始数据及其统计特征</span><br><span class="line">describe #数据的统计特征</span><br><span class="line">regres s price mpg weight foreign #price 作为因变量， mpg、weigbt 、foreign 作为自变量建立线性回归模型，运用OLS 方法进行回归分析。</span><br><span class="line">#基本回归分析之后，还要对模型的整体和系数进行检验，以求证其是否符合经济理论或现实情况的要求。</span><br><span class="line">#（1）线性检验</span><br><span class="line"># （2）非线性检验</span><br><span class="line">test weight foreign# (也可以输入test (weight=0)(foreign=0) </span><br><span class="line">#模型的预测</span><br><span class="line">predict yhat , xb #线性预测拟合值，生成的变量名称为yhat </span><br><span class="line">predi ct e , residual #残差序列的预测值，生成的变量名称为e。</span><br><span class="line">list #显示，每个观测值信息的最后出现了新变量yhat.</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-7ef68503d65b68ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="实验原假设为weight=foreign=0. 而实际的检验结果是小概率事件发生的可能性为0 . 所
+以拒绝原假设. weight 和foreign 的系数均显著不为零。"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-7c9f0afcf10786fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="2-大样本的普通最小二乘分析"><a href="#2-大样本的普通最小二乘分析" class="headerlink" title="2.大样本的普通最小二乘分析"></a>2.大样本的普通最小二乘分析</h2><p><img src="https://upload-images.jianshu.io/upload_images/18342389-8cb197615bc3a16c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="1-模型建立"><a href="#1-模型建立" class="headerlink" title="1.模型建立"></a>1.模型建立</h3><p><img src="https://upload-images.jianshu.io/upload_images/18342389-1f8c4e76c05c609d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="2-使用小样本理论进行回归"><a href="#2-使用小样本理论进行回归" class="headerlink" title="2.使用小样本理论进行回归"></a>2.使用小样本理论进行回归</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">regress lntc lnq lnpl lnpk lnpr</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-0a92677bd0759738.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="3-使用大样本理论进行回归"><a href="#3-使用大样本理论进行回归" class="headerlink" title="3.使用大样本理论进行回归"></a>3.使用大样本理论进行回归</h3><p>​      大样本OLS 经常采用稳健标准差估计（robust ) 。稳健标准差是指其标准差对于模型中可能存在的<strong><a href="https://wenku.baidu.com/view/71d50383d4d8d15abe234ede.html" target="_blank" rel="noopener">异方差</a></strong>或<strong><a href="https://wenku.baidu.com/view/5cdb89c95a8102d277a22fb2.html?rec_flag=default&sxts=1573608507953" target="_blank" rel="noopener">自相关</a></strong>问题不敏感，基于稳健标准差计算的稳健t 统计量仍然渐近服从t 分布。在Stata 中利用robust 选项可以得到异方差稳健估计量。</p>
+<p> <code>regress lntc lnq lnpl lnpk lnpr , robust</code><br><img src="https://upload-images.jianshu.io/upload_images/18342389-0154c5757a9e26e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="4-结果对比"><a href="#4-结果对比" class="headerlink" title="4.结果对比"></a>4.结果对比</h3><blockquote>
+<p>​       从这两个结果可以看到:稳健标准差与普通标准差估计的系数相同，但标准差和t 值存在一定的差别。在现实社会的各种数据中，很少有数据能够满足小样本理论的严格假设，所以当样本数据足够大时，我们最好采用稳健标准差进行估计和检验，这样得到的结果将会更加准确。</p>
+</blockquote>
+<h2 id="3-约束回归"><a href="#3-约束回归" class="headerlink" title="3. 约束回归"></a>3. 约束回归</h2><p><img src="https://upload-images.jianshu.io/upload_images/18342389-f8ad9edc3e0abb13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="1-约束的定义、列出和取消"><a href="#1-约束的定义、列出和取消" class="headerlink" title="1.约束的定义、列出和取消"></a>1.约束的定义、列出和取消</h3><p><img src="https://upload-images.jianshu.io/upload_images/18342389-565840c2e03cab5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>  若要删掉某个或几个己定义的约束，则可使用以下语句:<br> <code>constraint drop [numlistl_all]</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnsreg mpg price weight d~spl gear ratio foreign length, c(1-5)</span><br><span class="line"> #mpg 是被解释变量的名称， price weight displ gear ratio foreign length 为各个解释变量的名称， c(1-5)表示在1-5 个约束之下进行回归。</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-3b3832b2aeca01e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="非线性最小二乘"><a href="#非线性最小二乘" class="headerlink" title="非线性最小二乘"></a>非线性最小二乘</h2><p>​       如果将自变量与因变量的关系设为线性关系加一个误差项，那么我们就设定了一个线性模型。同样地，如果将自变量与因变量的关系设定为非线性关系加上一个误差工页，我们就得到了非线性模型。这里介绍的是没有办法转化为线性回归的回归模型。<br>​      对于非线性模型，可以通过非线性最小二乘CNonlinear Least Square, NLS) 来求出模型估计量。与普通最小二乘法类似，非线性最小二乘法也是要选择估计量盲，使得残差平方和最小。通常情况下，非线性最小二乘没有解析解，故一般使用数值方法求解。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-8698c4c8f6a87fad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/18342389-6cdc6162407be85c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-b7fe5d0dee012cc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-2ab2cdbe0caf7f57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-fc9d88f56b75ff3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-174d52b90c526f90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>参考：<br>《stata统计分析与应用》第二版 周光肃等著</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/17/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-3. Stata假设检验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/17/3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">3. Stata假设检验</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/17/3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" class="archive-article-date">
+  	<time datetime="2019-11-17T10:56:53.705Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="3-Stata假设检验"><a href="#3-Stata假设检验" class="headerlink" title="3. Stata假设检验"></a>3. Stata假设检验</h1><blockquote>
+<p>假设检验是统计分析中常用的一种重要方法。所谓假设是指任何一个有关随机变量未知分布的统计假定，所谓假设检验是指对一个样本进行考察，从而决定它能否合理地被认为与假设相符的过程。<strong>假设检验的根本目的是要区分系统差异和抽样误差。</strong></p>
+</blockquote>
+<h2 id="1-单个总体的假设检验"><a href="#1-单个总体的假设检验" class="headerlink" title="1.单个总体的假设检验"></a>1.单个总体的假设检验</h2><p>单个总体的假设检验是利用某些检验统计量对样本的均值（μ。）、方差（σ2）进行检验， 主要分为三种情形。</p>
+<ul>
+<li><p>己知方差σ2 ， 检验假设Ho: μ=μ。<br><img src="https://upload-images.jianshu.io/upload_images/18342389-b93794ee14417cfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>未知方差σ2 ， 检验假设Ho:μ=μ。<br><img src="https://upload-images.jianshu.io/upload_images/18342389-cd27f20b47edc5fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>3 . 未知期望μ<br><img src="https://upload-images.jianshu.io/upload_images/18342389-554412fdbfc5f36d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ul>
+<h2 id="2-两个总体的假设检验"><a href="#2-两个总体的假设检验" class="headerlink" title="2.两个总体的假设检验"></a>2.两个总体的假设检验</h2><ul>
+<li><p>未知期望<br><img src="https://upload-images.jianshu.io/upload_images/18342389-9feb9928068817fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>未知方差，但两方差相等<br><img src="https://upload-images.jianshu.io/upload_images/18342389-0bd4ec614ca75c02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ul>
+<p>参考：<br>《stata统计分析与应用》第二版 周光肃等著</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/17/3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2.stata方差分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">2.stata方差分析</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2019-11-17T10:51:38.850Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="2-stata方差分析"><a href="#2-stata方差分析" class="headerlink" title="2. stata方差分析"></a>2. stata方差分析</h1><blockquote>
+<p>方差分析**是根据样本方差对总体均值进行统计推断的方法，能够解决多个均值是否相等的检验问题。方差分析有两个优点: 一是效率较高，节省了时间:二是增加了稳定性，因为分析将所有的样本资料结合在了一起.</p>
+</blockquote>
+<blockquote>
+<p><strong>实验基本原理</strong><br>方差分析的目的是检验各个水平的均值是否相等，实现这个目的的手段是通过方差的比较。观察值之间的差异来自于两个方面:一个是由不同水平造成的<strong>系统性差异</strong>，另一个是由抽选样本的<strong>随机性而产生的差异</strong>。这两个方面产生的差异可以用两个方差来衡量: 一个称为<strong>水平之间的方差</strong>，是由系统性因素和随机性因素共同造成的;另一个称为<strong>水平内部的方差</strong>， 仅由随机性因素造成。如果不同的水平对结果没有影响，则在水平之间的方差中， 仅仅有随机因素的差异，而没有系统性的差异，所以两个方差的比值应接近于1 ;反之，则两个方差应差异较大。</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-f2e6f3080f47e182.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="1-单因素方差分析"><a href="#1-单因素方差分析" class="headerlink" title="1. 单因素方差分析"></a>1. 单因素方差分析</h3><p>​      <code>oneway sales color, tabulate</code><br>​      sales (销量）是将要分析的变量， color 是分类变量，也就是水平变量， tabulate 的作用<br>是产生有关数据的汇总表.<br><img src="https://upload-images.jianshu.io/upload_images/18342389-b4fd0d4e4b422ee1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="单因素方差分析结果图"><br><img src="https://upload-images.jianshu.io/upload_images/18342389-8dd4f6664651199b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="单因素方差分析结果解释"></p>
+<p><a href="https://blog.csdn.net/qq_41989587/article/details/82351591" target="_blank" rel="noopener">方差齐性检验</a></p>
+<h3 id="2-多因素方差分析"><a href="#2-多因素方差分析" class="headerlink" title="2.多因素方差分析"></a>2.多因素方差分析</h3><blockquote>
+<p>在现实研究中， 一个事件不可能仅受一个因素的影响，恰恰相反， 一个事件是受多个因素综合作用的结果，所以多因素方差分析相比单因素方差分析有更广泛的应用空间。下面以双因素方差分析中无交互作用的情况为例</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-a9adea60f1c3c3b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><code>anova wage child rnarriage child * rnarriage</code><br>anova 是进行多因素方差分析的命令语句， wage 是因变量， child 、marriage 和child* marriage 是影响因素,<br><img src="https://upload-images.jianshu.io/upload_images/18342389-ff9bcecc9099b785.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h1 id="3-协方差分析"><a href="#3-协方差分析" class="headerlink" title="3.协方差分析"></a>3.协方差分析</h1><blockquote>
+<p>方差分析存在明显的弊端，因此无法控制分析中存在的某些随机因素，这也影响了分析结果的准确度。<br><strong>协方差分析</strong>控制了这些干扰或调节因素，提高了试验的精确性和准确性，对处理以外的 一切条件都采取了有效措施来严加控制，使它们在各个处理过程中尽量保持一致。<strong>协方差分析主要是在排除了协变量的影响后再对修正后的主效应进行方差分析</strong>，是将线性回归与方差分析结合起来的一种分析方法。</p>
+</blockquote>
+<p>​      协方差分析将那些难以控制的因素作为协变量，从而在排除协变量影响的情况下，分析自变量、因变量的作用。当模型中只存在一个协变量时，叫做一元协方差分析，当有两个及以上的协变量时，叫做多元协方差分析。<br>​      协方差分析的基本命令语句与多因素方差分析的命令语句基本一致,这个命令语句与多因素方差分析命令语句的唯一不同是” continuous(varli st) “ ，即必须指明连续变量，若不指明， Stata 默认除因变量之外的所有变量均为分类变量:<br><code>anova wage child marriage child * marriage educ, continuous(educ)</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-927d91de7b327226.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>​      通过实验原理，我们知道协方差分析是借助回归分析完成的，所以可以通过添加regress选项的形式便回归的结果得到展示，使变量间的关系得到更清晰的展现，这时的命令语句如下:<br><code>anova wage ch 工ld marriage child * marriage educ , continuous(educ) regress</code><br><img src="https://upload-images.jianshu.io/upload_images/18342389-565781781f910aa6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>参考：<br>《stata统计分析与应用》第二版 周光肃等著</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-1.Stata数据处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/17/1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">1.Stata数据处理</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/17/1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="archive-article-date">
+  	<time datetime="2019-11-17T10:50:57.029Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Stata数据处理"><a href="#1-Stata数据处理" class="headerlink" title="1.Stata数据处理"></a>1.Stata数据处理</h1><p><a href="https://blog.csdn.net/hanleiliu/article/details/97827960" target="_blank" rel="noopener">Stata14安装</a><br><code>ssc install asdoc, replace</code> //导入输出命令</p>
+<h2 id="1-数据打开"><a href="#1-数据打开" class="headerlink" title="1.数据打开"></a>1.数据打开</h2><p>use “E:\data\suto.dta”<br>sysuse suro.dta</p>
+<p>打开部分变量：<code>use make price using &quot;E:\data\suto.dta&quot;</code><br>打开部分样本：<code>use &quot;E:\data\suto.dta&quot; in 5/10（第5个到10）</code><br>打开某些特征样本：<code>use &quot;E:\data\suto.dta&quot; if foreign=1</code><br>打开网络数据 <code>use http://www.stata-press.com/data/r9/nlswork</code></p>
+<h3 id="1-2-数据的类型和压缩"><a href="#1-2-数据的类型和压缩" class="headerlink" title="1.2. 数据的类型和压缩"></a>1.2. 数据的类型和压缩</h3><h4 id="1-2-1-数据类型"><a href="#1-2-1-数据类型" class="headerlink" title="1.2.1 数据类型"></a>1.2.1 数据类型</h4><ol>
+<li>数值型</li>
+<li>字符型</li>
+<li>日期型（1999年1月1日-&gt;19990101)</li>
+</ol>
+<h4 id="1-2-2-数据压缩"><a href="#1-2-2-数据压缩" class="headerlink" title="1.2.2 数据压缩"></a>1.2.2 数据压缩</h4><p><code>compress [变量]</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clear #清空内存</span><br><span class="line">set obs 1 #样本容量设置为1，stata默认类型float</span><br><span class="line">gen a=1 #变量a=1</span><br><span class="line">describe #描述变量基本情况</span><br></pre></td></tr></table></figure>
+
+<p>####1.3. 数据类型的转化<br>#####1.3.1 字符型转为数值型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysuse water.dta,clear</span><br><span class="line">destring year production captial, replace #replace指转化后的数据替换原有数据</span><br></pre></td></tr></table></figure>
+<p>若原来的字符型变量还有空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysuse water.dta,clear</span><br><span class="line">destring date, replace ignore(&quot;&quot;)</span><br></pre></td></tr></table></figure>
+<p>若原来的字符型变量还有特殊字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysuse water.dta,clear</span><br><span class="line">destring price, gen(price_1)  ignore(&quot;$&quot;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/18342389-5d3e29eb12cef5fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据.png"><br><code>destring 服务时长,gen(t) ignore(时，分)</code></p>
+<h4 id="1-3-1-数值型转为字符型"><a href="#1-3-1-数值型转为字符型" class="headerlink" title="1.3.1 数值型转为字符型"></a>1.3.1 数值型转为字符型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysuse water.dta,clear</span><br><span class="line">tostring year gdp loan, replace</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-数据导入"><a href="#2-数据导入" class="headerlink" title="2 数据导入"></a>2 数据导入</h2><h3 id="2-1-输入数据"><a href="#2-1-输入数据" class="headerlink" title="2.1 输入数据"></a>2.1 输入数据</h3><ol>
+<li>菜单输入</li>
+<li>命令输入</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br><span class="line">input  str10name remarks</span><br><span class="line">Mike 98</span><br><span class="line">John 78</span><br><span class="line">save chengji</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-2-使用已保存的Stata数据"><a href="#2-2-使用已保存的Stata数据" class="headerlink" title="2.2 使用已保存的Stata数据"></a>2.2 使用已保存的Stata数据</h3><ol>
+<li><p>insheet，读取文本数据<br><code>insheet using E:\data\citywater.csv</code></p>
+</li>
+<li><p>infile，读取无固定格式文本数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">infile year production labor using E:\data\citywater.csv</span><br></pre></td></tr></table></figure></li>
+<li><p>infix，读取无固定格式文本数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">infix gender 1 number 3-5 math 7-8 english 10-11 using E:\data\citywater.csv</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ol>
+<h2 id="3-数据的整理"><a href="#3-数据的整理" class="headerlink" title="3 数据的整理"></a>3 数据的整理</h2><h3 id="3-1-数据的标签和排序"><a href="#3-1-数据的标签和排序" class="headerlink" title="3.1 数据的标签和排序"></a>3.1 数据的标签和排序</h3><p>1.数据标签</p>
+<ul>
+<li>数据库添加标签：<code>label data &quot;1978年美国汽车横截面数据&quot;</code></li>
+<li>变量添加标签：<code>label variable mpg &quot;每加仑油行驶里程数&quot;</code></li>
+<li>分类变量添加标签： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">label define foreignlabel 0 &quot;Domestic&quot; 1 &quot;Foreign&quot;</span><br><span class="line">label values foreign foreignlabel #foreignlabel标签名</span><br></pre></td></tr></table></figure></li>
+<li>label dir #查看表情相关内容</li>
+</ul>
+<h3 id="3-2-排序数据"><a href="#3-2-排序数据" class="headerlink" title="3.2 排序数据"></a>3.2 排序数据</h3><p><code>sort price</code><br><code>gsort + price</code></p>
+<p>###3.3 数据的拆分</p>
+<ul>
+<li><p>数据横向拆分</p>
+<p>删除变量或观测值： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sysuse water,clear</span><br><span class="line">drop capital labor</span><br><span class="line">save E:/data/wateroutput,replace</span><br></pre></td></tr></table></figure>
+<p>保留变量或观测值：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sysuse water,clear</span><br><span class="line">keep capital labor</span><br><span class="line">save E:/data/wateroutput,replace</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数据纵向拆分<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sysuse car,clear</span><br><span class="line">drop if foreign==1</span><br><span class="line">save E:/data/domesticoutput,replace</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sysuse car,clear</span><br><span class="line">keep if foreign==1</span><br><span class="line">save E:/data/foreignoutput,replace</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="4-数据合并"><a href="#4-数据合并" class="headerlink" title="4.数据合并"></a>4.数据合并</h3><ul>
+<li><p>数据横向合并<br><img src="https://upload-images.jianshu.io/upload_images/18342389-74d56953043e8e42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>数据纵向合并<br><img src="https://upload-images.jianshu.io/upload_images/18342389-e9cea76b1d363b98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ul>
+<p>拆分字符串：2019-07-02</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use E:\Stata\data\serviceData2019.dta</span><br><span class="line">gen year=substr(服务时间,1,4)</span><br><span class="line">gen month=substr(服务时间,6,2)</span><br><span class="line">gen day=substr(服务时间,9,2)</span><br><span class="line">gen date=substr(服务时间,1,10) //20190702</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="5-数据的长宽转换"><a href="#5-数据的长宽转换" class="headerlink" title="5. 数据的长宽转换"></a>5. 数据的长宽转换</h2><p><code>reshape long english science,i(number name) j(year)</code></p>
+<p>参考：<br>《stata统计分析与应用》第二版 周光肃等著</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/17/1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">展开全文 >></a>
         </p>
       
 
