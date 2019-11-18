@@ -171,67 +171,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-
-
-
-<h2 id="1-多重共线性与逐步回归法"><a href="#1-多重共线性与逐步回归法" class="headerlink" title="1. 多重共线性与逐步回归法"></a>1. 多重共线性与逐步回归法</h2><p>​        多重共线性问题在多元线性回归分析中是很常见的， 其导致的直接后果是方程回归系数估计的标准误差变大、系数估计值的精度降低等。多重共线性的问题对于Stata 软件来说并不显著，因为Stata 会自动剔除完全的多重共线性。</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118144334290.png" alt="image-20191118144334290"></p>
-<p>​        当确认模型存在多重共线性时，通常有两种解决方法来消除其影响: 一种是收集更多的数据，增大样本容量;另一种是通过<strong>逐步回归</strong>，改进模型的形式。</p>
-<p>​        逐步回归法的基本原理是: 先分别拟合被解释变量对于每一个解释变量的一元回归， 并将各回归方程的拟合优度按照、大小顺序排列，然后将拟合优度最大的解释变量作为基础变量， 逐渐将其他解释变量加入模型中并同时观测 t 检验值的变化，如果 t 检验显著，则保留该变量， 否则去除，不断重复此过程直到加入所有显著的解释变量。</p>
-<p>变量主要包括:y=旅游收入(单位:万元) ,Xl=某市旅游人数(单位: 人) , X2=城镇居民人均旅游支出(单位: 元) , X3=农村居民人均旅游支出(单位: 元) , X4=公路里程(单位:公里) , X5=铁路里程(单位:公里〉。</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118144553475.png" alt="image-20191118144553475"></p>
-<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><ol>
-<li><p>估计方程</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118144643022.png" alt="image-20191118144643022"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use c:\data\lvyou.dta,clear</span><br><span class="line">regress Y Xl X2 X3 X4 X5</span><br></pre></td></tr></table></figure>
-
-<p>​        <img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118144804170.png" alt="image-20191118144804170"></p>
-<p>​        通过判断可以发现:整个模型的拟合优度较高，但是变量X1 和X5 未通过t 检验，且X5 的系数为负，与常理违背，因为在通常情况下，随着铁路里程的增加，交通更加方便，所以旅游收入应该增加。综上所述，可以初步认为该模型存在多重共线性。</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>多重共线性检验</p>
-<p>​        多重共线性的检验通常采取两种方法: 一种是计算<strong>膨胀因子</strong>，另一种是计算<strong>变量之间的相关系数</strong>，下面将会详细介绍。</p>
-<p>​    （1）计算膨胀因子</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118145050249.png" alt="image-20191118145050249"></p>
-<pre><code>（2）计算相关系数</code></pre><p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118145143864.png" alt="image-20191118145143864"></p>
-</li>
-</ol>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118145158045.png" alt="image-20191118145158045"></p>
-<p>​        <code>pwcorr Xl X2 X3 X4 X5</code></p>
-<p>​        <img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118145421172.png" alt="image-20191118145421172"></p>
-<ol start="3">
-<li><p>逐步回归法</p>
-<p>（1）手动逐步回归法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">regress Y Xl</span><br><span class="line">regress Y X2</span><br><span class="line">regress Y X3</span><br><span class="line">regress Y X4</span><br><span class="line">regress Y X5</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118150210422.png" alt="image-20191118150210422"></p>
-</li>
-</ol>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118150259171.png" alt="image-20191118150259171"></p>
-<ul>
-<li><p>X5加入方程：</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118150543402.png" alt="image-20191118150543402"></p>
-</li>
-<li><p>X1加入方程</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118150601630.png" alt="image-20191118150601630"></p>
-</li>
-<li><p>X4加入方程</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118150643294.png" alt="image-20191118150643294"></p>
-</li>
-<li><p>X3加入方程</p>
-</li>
-</ul>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118150705475.png" alt="image-20191118150705475"></p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118150736171.png" alt="image-20191118150736171"></p>
-<p>（2)自动逐步回归法</p>
-<p>​        若采用前向搜寻法逐步回归，可输入如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stepwise , pe(O.05) : regress Y Xl X2 X3 X4 X5</span><br></pre></td></tr></table></figure>
-
-<p>​        其中， pe(0.05)表示运用显著性水平为5% 的前向搜寻法， regress Y X1 X2 X3 X4 X5 则是<br>指要建立回归模型。</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118151051898.png" alt="image-20191118151051898"></p>
-<h2 id="2-异方差检验与处理"><a href="#2-异方差检验与处理" class="headerlink" title="2.异方差检验与处理"></a>2.异方差检验与处理</h2>
+        <p>在计量经济学中， 最为根本的回归方法就是普通最小二乘法C OLS ) ，该方法中有一些最为根本的经典假设，如果这些假设条件不满足，则会影响模型估计的准确性和效率。本章将依次对不满足经典假设的情况进行分析，主要包括多重共线性、异方差和内生性问题的处理。</p>
+<hr>
+        
+          <a class="article-more-a" href="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/#more">more >></a>
+        
       
 
       
@@ -339,72 +283,6 @@
 
 
   
-    <article id="post-2.stata方差分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">stata方差分析</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2019-11-17T11:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>运用Stata 进行单因素方差分析、多因素方差分析与协方差分析的相关内容。</p>
-<hr>
-        
-          <a class="article-more-a" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-3. Stata假设检验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -442,6 +320,72 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/11/17/3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2.stata方差分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">stata方差分析</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2019-11-17T11:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>运用Stata 进行单因素方差分析、多因素方差分析与协方差分析的相关内容。</p>
+<hr>
+        
+          <a class="article-more-a" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">展开全文 >></a>
         </p>
       
 
