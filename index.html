@@ -151,27 +151,84 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-6-Stata与模型修正" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/18/6/">6</a>
+      <a class="article-title" href="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/">6.Stata与模型修正</a>
     </h1>
   
 
         
-        <a href="/2019/11/18/6/" class="archive-article-date">
-  	<time datetime="2019-11-18T08:22:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
+        <a href="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/" class="archive-article-date">
+  	<time datetime="2019-11-18T08:52:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="6-Stata-与模型修正"><a href="#6-Stata-与模型修正" class="headerlink" title="6. Stata 与模型修正"></a>6. Stata 与模型修正</h1><p>​        在计量经济学中， 最为根本的回归方法就是普通最小二乘法C OLS ) ，该方法中有一些最为根本的经典假设，如果这些假设条件不满足，则会影响模型估计的准确性和效率。本章将依次对不满足经典假设的情况进行分析，主要包括多重共线性、异方差和内生性问题的处理。</p>
+<h2 id="1-多重共线性与逐步回归法"><a href="#1-多重共线性与逐步回归法" class="headerlink" title="1. 多重共线性与逐步回归法"></a>1. 多重共线性与逐步回归法</h2><p>​        多重共线性问题在多元线性回归分析中是很常见的， 其导致的直接后果是方程回归系数估计的标准误差变大、系数估计值的精度降低等。多重共线性的问题对于Stata 软件来说并不显著，因为Stata 会自动剔除完全的多重共线性。</p>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118144334290-1574066074281.png" alt="image-20191118144334290"></p>
+<p>​        当确认模型存在多重共线性时，通常有两种解决方法来消除其影响: 一种是收集更多的数据，增大样本容量;另一种是通过<strong>逐步回归</strong>，改进模型的形式。</p>
+<p>​        逐步回归法的基本原理是: 先分别拟合被解释变量对于每一个解释变量的一元回归， 并将各回归方程的拟合优度按照、大小顺序排列，然后将拟合优度最大的解释变量作为基础变量， 逐渐将其他解释变量加入模型中并同时观测 t 检验值的变化，如果 t 检验显著，则保留该变量， 否则去除，不断重复此过程直到加入所有显著的解释变量。</p>
+<p>变量主要包括:y=旅游收入(单位:万元) ,Xl=某市旅游人数(单位: 人) , X2=城镇居民人均旅游支出(单位: 元) , X3=农村居民人均旅游支出(单位: 元) , X4=公路里程(单位:公里) , X5=铁路里程(单位:公里〉。</p>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118144553475.png" alt="image-20191118144553475"></p>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><ol>
+<li><p>估计方程</p>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118144643022.png" alt="image-20191118144643022"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use c:\data\lvyou.dta,clear</span><br><span class="line">regress Y Xl X2 X3 X4 X5</span><br></pre></td></tr></table></figure>
+
+<p>​        <img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118144804170-1574066077706.png" alt="image-20191118144804170"></p>
+<p>​        通过判断可以发现:整个模型的拟合优度较高，但是变量X1 和X5 未通过t 检验，且X5 的系数为负，与常理违背，因为在通常情况下，随着铁路里程的增加，交通更加方便，所以旅游收入应该增加。综上所述，可以初步认为该模型存在多重共线性。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>多重共线性检验</p>
+<p>​        多重共线性的检验通常采取两种方法: 一种是计算<strong>膨胀因子</strong>，另一种是计算<strong>变量之间的相关系数</strong>，下面将会详细介绍。</p>
+<p>​    （1）计算膨胀因子</p>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118145050249-1574066081300.png" alt="image-20191118145050249"></p>
+<pre><code>（2）计算相关系数</code></pre><p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118145143864-1574066084969.png" alt="image-20191118145143864"></p>
+</li>
+</ol>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118145158045-1574066086223.png" alt="image-20191118145158045"></p>
+<p>​        <code>pwcorr Xl X2 X3 X4 X5</code></p>
+<p>​        <img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118145421172-1574066088234.png" alt="image-20191118145421172"></p>
+<ol start="3">
+<li><p>逐步回归法</p>
+<p>（1）手动逐步回归法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">regress Y Xl</span><br><span class="line">regress Y X2</span><br><span class="line">regress Y X3</span><br><span class="line">regress Y X4</span><br><span class="line">regress Y X5</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118150210422.png" alt="image-20191118150210422"></p>
+</li>
+</ol>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118150259171-1574066090117.png" alt="image-20191118150259171"></p>
+<ul>
+<li><p>X5加入方程：</p>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118150543402-1574066092741.png" alt="image-20191118150543402"></p>
+</li>
+<li><p>X1加入方程</p>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118150601630-1574066094627.png" alt="image-20191118150601630"></p>
+</li>
+<li><p>X4加入方程</p>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118150643294-1574066096584.png" alt="image-20191118150643294"></p>
+</li>
+<li><p>X3加入方程</p>
+</li>
+</ul>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118150705475-1574066098299.png" alt="image-20191118150705475"></p>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118150736171.png" alt="image-20191118150736171"></p>
+<p>（2)自动逐步回归法</p>
+<p>​        若采用前向搜寻法逐步回归，可输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stepwise , pe(O.05) : regress Y Xl X2 X3 X4 X5</span><br></pre></td></tr></table></figure>
+
+<p>​        其中， pe(0.05)表示运用显著性水平为5% 的前向搜寻法， regress Y X1 X2 X3 X4 X5 则是<br>指要建立回归模型。</p>
+<p><img src="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5C6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3%5Cimage-20191118151051898-1574066101081.png" alt="image-20191118151051898"></p>
+<h2 id="2-异方差检验与处理"><a href="#2-异方差检验与处理" class="headerlink" title="2.异方差检验与处理"></a>2.异方差检验与处理</h2>
       
 
       
@@ -179,11 +236,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">stata</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/18/6/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/11/18/6-Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/">展开全文 >></a>
         </p>
       
 
@@ -213,31 +281,47 @@
 
 
   
-    <article id="post-6.Stata与模型修正" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-3-Stata假设检验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/">Stata 与模型修正</a>
+      <a class="article-title" href="/2019/11/18/3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">3. Stata假设检验</a>
     </h1>
   
 
         
-        <a href="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/" class="archive-article-date">
-  	<time datetime="2019-11-18T04:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
+        <a href="/2019/11/18/3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" class="archive-article-date">
+  	<time datetime="2019-11-18T08:51:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在计量经济学中， 最为根本的回归方法就是普通最小二乘法C OLS ) ，该方法中有一些最为根本的经典假设，如果这些假设条件不满足，则会影响模型估计的准确性和效率。本章将依次对不满足经典假设的情况进行分析，主要包括多重共线性、异方差和内生性问题的处理。</p>
-<hr>
-        
-          <a class="article-more-a" href="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/#more">more >></a>
-        
+        <h1 id="3-Stata假设检验"><a href="#3-Stata假设检验" class="headerlink" title="3. Stata假设检验"></a>3. Stata假设检验</h1><p>​        单个总体的假设检验和两个总体的假设检验等相关内容.</p>
+<blockquote>
+<p>假设检验是统计分析中常用的一种重要方法。所谓假设是指任何一个有关随机变量未知分布的统计假定，所谓假设检验是指对一个样本进行考察，从而决定它能否合理地被认为与假设相符的过程。<strong>假设检验的根本目的是要区分系统差异和抽样误差。</strong></p>
+</blockquote>
+<h2 id="1-单个总体的假设检验"><a href="#1-单个总体的假设检验" class="headerlink" title="1.单个总体的假设检验"></a>1.单个总体的假设检验</h2><p>单个总体的假设检验是利用某些检验统计量对样本的均值（μ。）、方差（σ2）进行检验， 主要分为三种情形。</p>
+<ul>
+<li><p>己知方差σ2 ， 检验假设Ho: μ=μ。<br><img src="/2019/11/18/3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/E:%5Chexo%5Cblog1%5Csource_posts%5C3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%5C18342389-b93794ee14417cfa.png" alt="image.png"></p>
+</li>
+<li><p>未知方差σ2 ， 检验假设Ho:μ=μ。<br><img src="https://upload-images.jianshu.io/upload_images/18342389-cd27f20b47edc5fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>3 . 未知期望μ<br><img src="/2019/11/18/3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/E:%5Chexo%5Cblog1%5Csource_posts%5C3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%5C18342389-554412fdbfc5f36d.png" alt="image.png"></p>
+</li>
+</ul>
+<h2 id="2-两个总体的假设检验"><a href="#2-两个总体的假设检验" class="headerlink" title="2.两个总体的假设检验"></a>2.两个总体的假设检验</h2><ul>
+<li><p>未知期望<br><img src="/2019/11/18/3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/E:%5Chexo%5Cblog1%5Csource_posts%5C3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%5C18342389-9feb9928068817fa.png" alt="image.png"></p>
+</li>
+<li><p>未知方差，但两方差相等<br><img src="/2019/11/18/3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/E:%5Chexo%5Cblog1%5Csource_posts%5C3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%5C18342389-0bd4ec614ca75c02.png" alt="image.png"></p>
+</li>
+</ul>
+<p>参考：<br>《stata统计分析与应用》第二版 周光肃等著</p>
+
       
 
       
@@ -245,11 +329,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">Stata</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/11/18/3-Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">展开全文 >></a>
         </p>
       
 
@@ -279,31 +374,49 @@
 
 
   
-    <article id="post-1.Stata数据处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2-stata方差分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/17/1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">Stata数据处理</a>
+      <a class="article-title" href="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">2.stata方差分析</a>
     </h1>
   
 
         
-        <a href="/2019/11/17/1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="archive-article-date">
-  	<time datetime="2019-11-17T11:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+        <a href="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2019-11-18T08:50:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>介绍Stata的主要功能模块</p>
-<hr>
-        
-          <a class="article-more-a" href="/2019/11/17/1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/#more">more >></a>
-        
+        <h1 id="2-stata方差分析"><a href="#2-stata方差分析" class="headerlink" title="2. stata方差分析"></a>2. stata方差分析</h1><p>​        运用Stata 进行单因素方差分析、多因素方差分析与协方差分析的相关内容。</p>
+<blockquote>
+<p><strong>方差分析</strong>是根据样本方差对总体均值进行统计推断的方法，能够解决多个均值是否相等的检验问题。方差分析有两个优点: 一是效率较高，节省了时间:二是增加了稳定性，因为分析将所有的样本资料结合在了一起.</p>
+</blockquote>
+<blockquote>
+<p><strong>实验基本原理</strong><br>方差分析的目的是检验各个水平的均值是否相等，实现这个目的的手段是通过方差的比较。观察值之间的差异来自于两个方面:一个是由不同水平造成的<strong>系统性差异</strong>，另一个是由抽选样本的<strong>随机性而产生的差异</strong>。这两个方面产生的差异可以用两个方差来衡量: 一个称为<strong>水平之间的方差</strong>，是由系统性因素和随机性因素共同造成的;另一个称为<strong>水平内部的方差</strong>， 仅由随机性因素造成。如果不同的水平对结果没有影响，则在水平之间的方差中， 仅仅有随机因素的差异，而没有系统性的差异，所以两个方差的比值应接近于1 ;反之，则两个方差应差异较大。</p>
+</blockquote>
+<p><img src="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/E:%5Chexo%5Cblog1%5Csource_posts%5C2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%5C18342389-f2e6f3080f47e182.png" alt="image.png"></p>
+<h3 id="1-单因素方差分析"><a href="#1-单因素方差分析" class="headerlink" title="1. 单因素方差分析"></a>1. 单因素方差分析</h3><p>​      <code>oneway sales color, tabulate</code><br>​      sales (销量）是将要分析的变量， color 是分类变量，也就是水平变量， tabulate 的作用<br>是产生有关数据的汇总表.<br><img src="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/E:%5Chexo%5Cblog1%5Csource_posts%5C2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%5C18342389-b4fd0d4e4b422ee1.png" alt="单因素方差分析结果图"><br><img src="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/E:%5Chexo%5Cblog1%5Csource_posts%5C2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%5C18342389-8dd4f6664651199b.png" alt="单因素方差分析结果解释"></p>
+<p><a href="https://blog.csdn.net/qq_41989587/article/details/82351591" target="_blank" rel="noopener">方差齐性检验</a></p>
+<h3 id="2-多因素方差分析"><a href="#2-多因素方差分析" class="headerlink" title="2.多因素方差分析"></a>2.多因素方差分析</h3><blockquote>
+<p>在现实研究中， 一个事件不可能仅受一个因素的影响，恰恰相反， 一个事件是受多个因素综合作用的结果，所以多因素方差分析相比单因素方差分析有更广泛的应用空间。下面以双因素方差分析中无交互作用的情况为例</p>
+</blockquote>
+<p><img src="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/E:%5Chexo%5Cblog1%5Csource_posts%5C2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%5C18342389-a9adea60f1c3c3b8.png" alt="image.png"></p>
+<p><code>anova wage child rnarriage child * rnarriage</code><br>anova 是进行多因素方差分析的命令语句， wage 是因变量， child 、marriage 和child* marriage 是影响因素,<br><img src="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/E:%5Chexo%5Cblog1%5Csource_posts%5C2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%5C18342389-ff9bcecc9099b785.png" alt="image.png"></p>
+<h1 id="3-协方差分析"><a href="#3-协方差分析" class="headerlink" title="3.协方差分析"></a>3.协方差分析</h1><blockquote>
+<p>方差分析存在明显的弊端，因此无法控制分析中存在的某些随机因素，这也影响了分析结果的准确度。<br><strong>协方差分析</strong>控制了这些干扰或调节因素，提高了试验的精确性和准确性，对处理以外的 一切条件都采取了有效措施来严加控制，使它们在各个处理过程中尽量保持一致。<strong>协方差分析主要是在排除了协变量的影响后再对修正后的主效应进行方差分析</strong>，是将线性回归与方差分析结合起来的一种分析方法。</p>
+</blockquote>
+<p>​      协方差分析将那些难以控制的因素作为协变量，从而在排除协变量影响的情况下，分析自变量、因变量的作用。当模型中只存在一个协变量时，叫做一元协方差分析，当有两个及以上的协变量时，叫做多元协方差分析。<br>​      协方差分析的基本命令语句与多因素方差分析的命令语句基本一致,这个命令语句与多因素方差分析命令语句的唯一不同是” continuous(varli st) “ ，即必须指明连续变量，若不指明， Stata 默认除因变量之外的所有变量均为分类变量:<br><code>anova wage child marriage child * marriage educ, continuous(educ)</code></p>
+<p><img src="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/E:%5Chexo%5Cblog1%5Csource_posts%5C2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%5C18342389-927d91de7b327226.png" alt="image.png"></p>
+<p>​      通过实验原理，我们知道协方差分析是借助回归分析完成的，所以可以通过添加regress选项的形式便回归的结果得到展示，使变量间的关系得到更清晰的展现，这时的命令语句如下:<br><code>anova wage child marriage child * marriage educ , continuous(educ) regress</code><br><img src="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/E:%5Chexo%5Cblog1%5Csource_posts%5C2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%5C18342389-565781781f910aa6.png" alt="image.png"></p>
+<p>参考：<br>《stata统计分析与应用》第二版 周光肃等著</p>
+
       
 
       
@@ -311,11 +424,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">stata</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/17/1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/11/18/2-stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">展开全文 >></a>
         </p>
       
 
@@ -345,31 +469,127 @@
 
 
   
-    <article id="post-2.stata方差分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-1-Stata数据处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">stata方差分析</a>
+      <a class="article-title" href="/2019/11/18/1-Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">1.Stata数据处理</a>
     </h1>
   
 
         
-        <a href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2019-11-17T11:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+        <a href="/2019/11/18/1-Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="archive-article-date">
+  	<time datetime="2019-11-18T08:49:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>运用Stata 进行单因素方差分析、多因素方差分析与协方差分析的相关内容。</p>
-<hr>
-        
-          <a class="article-more-a" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/#more">more >></a>
-        
+        <h1 id="1-Stata数据处理"><a href="#1-Stata数据处理" class="headerlink" title="1.Stata数据处理"></a>1.Stata数据处理</h1><p>​        介绍Stata的主要功能模块.</p>
+<h2 id="1-数据打开"><a href="#1-数据打开" class="headerlink" title="1.数据打开"></a>1.数据打开</h2><p><a href="https://blog.csdn.net/hanleiliu/article/details/97827960" target="_blank" rel="noopener">Stata14安装</a></p>
+<p><code>ssc install asdoc, replace</code>//导入输出命令</p>
+<p><code>use &quot;E:\data\suto.dta&quot;</code><br><code>sysuse suro.dta</code></p>
+<p>打开部分变量：<code>use make price using &quot;E:\data\suto.dta&quot;</code><br>打开部分样本：<code>use &quot;E:\data\suto.dta&quot; in 5/10（第5个到10）</code><br>打开某些特征样本：<code>use &quot;E:\data\suto.dta&quot; if foreign=1</code><br>打开网络数据 <code>use http://www.stata-press.com/data/r9/nlswork</code></p>
+<h3 id="1-2-数据的类型和压缩"><a href="#1-2-数据的类型和压缩" class="headerlink" title="1.2. 数据的类型和压缩"></a>1.2. 数据的类型和压缩</h3><h4 id="1-2-1-数据类型"><a href="#1-2-1-数据类型" class="headerlink" title="1.2.1 数据类型"></a>1.2.1 数据类型</h4><ol>
+<li>数值型</li>
+<li>字符型</li>
+<li>日期型（1999年1月1日-&gt;19990101)</li>
+</ol>
+<h4 id="1-2-2-数据压缩"><a href="#1-2-2-数据压缩" class="headerlink" title="1.2.2 数据压缩"></a>1.2.2 数据压缩</h4><p><code>compress [变量]</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clear #清空内存</span><br><span class="line">set obs 1 #样本容量设置为1，stata默认类型float</span><br><span class="line">gen a=1 #变量a=1</span><br><span class="line">describe #描述变量基本情况</span><br></pre></td></tr></table></figure>
+
+<p>####1.3. 数据类型的转化<br>#####1.3.1 字符型转为数值型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysuse water.dta,clear</span><br><span class="line">destring year production captial, replace #replace指转化后的数据替换原有数据</span><br></pre></td></tr></table></figure>
+
+<p>若原来的字符型变量还有空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysuse water.dta,clear</span><br><span class="line">destring date, replace ignore(&quot;&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>若原来的字符型变量还有特殊字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysuse water.dta,clear</span><br><span class="line">destring price, gen(price_1)  ignore(&quot;$&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/11/18/1-Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/E:%5Chexo%5Cblog1%5Csource_posts%5C1-Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%5C18342389-5d3e29eb12cef5fd.png" alt="数据.png"><br><code>destring 服务时长,gen(t) ignore(时，分)</code></p>
+<h4 id="1-3-1-数值型转为字符型"><a href="#1-3-1-数值型转为字符型" class="headerlink" title="1.3.1 数值型转为字符型"></a>1.3.1 数值型转为字符型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysuse water.dta,clear</span><br><span class="line">tostring year gdp loan, replace</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-数据导入"><a href="#2-数据导入" class="headerlink" title="2 数据导入"></a>2 数据导入</h2><h3 id="2-1-输入数据"><a href="#2-1-输入数据" class="headerlink" title="2.1 输入数据"></a>2.1 输入数据</h3><ol>
+<li>菜单输入</li>
+<li>命令输入</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br><span class="line">input  str10name remarks</span><br><span class="line">Mike 98</span><br><span class="line">John 78</span><br><span class="line">save chengji</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-2-使用已保存的Stata数据"><a href="#2-2-使用已保存的Stata数据" class="headerlink" title="2.2 使用已保存的Stata数据"></a>2.2 使用已保存的Stata数据</h3><ol>
+<li><p>insheet，读取文本数据<br><code>insheet using E:\data\citywater.csv</code></p>
+</li>
+<li><p>infile，读取无固定格式文本数据</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">infile year production labor using E:\data\citywater.csv</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>infix，读取无固定格式文本数据</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">infix gender 1 number 3-5 math 7-8 english 10-11 using E:\data\citywater.csv</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="3-数据的整理"><a href="#3-数据的整理" class="headerlink" title="3 数据的整理"></a>3 数据的整理</h2><h3 id="3-1-数据的标签和排序"><a href="#3-1-数据的标签和排序" class="headerlink" title="3.1 数据的标签和排序"></a>3.1 数据的标签和排序</h3><p>1.数据标签</p>
+<ul>
+<li>数据库添加标签：<code>label data &quot;1978年美国汽车横截面数据&quot;</code></li>
+<li>变量添加标签：<code>label variable mpg &quot;每加仑油行驶里程数&quot;</code></li>
+<li>分类变量添加标签： </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">label define foreignlabel 0 &quot;Domestic&quot; 1 &quot;Foreign&quot;</span><br><span class="line">label values foreign foreignlabel #foreignlabel标签名</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>label dir #查看表情相关内容</li>
+</ul>
+<h3 id="3-2-排序数据"><a href="#3-2-排序数据" class="headerlink" title="3.2 排序数据"></a>3.2 排序数据</h3><p><code>sort price</code><br><code>gsort + price</code></p>
+<p>###3.3 数据的拆分</p>
+<ul>
+<li><p>数据横向拆分</p>
+<p>删除变量或观测值： </p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sysuse water,clear</span><br><span class="line">drop capital labor</span><br><span class="line">save E:/data/wateroutput,replace</span><br></pre></td></tr></table></figure>
+
+<p>保留变量或观测值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sysuse water,clear</span><br><span class="line">keep capital labor</span><br><span class="line">save E:/data/wateroutput,replace</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>数据纵向拆分</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sysuse car,clear</span><br><span class="line">drop if foreign==1</span><br><span class="line">save E:/data/domesticoutput,replace</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sysuse car,clear</span><br><span class="line">keep if foreign==1</span><br><span class="line">save E:/data/foreignoutput,replace</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-数据合并"><a href="#4-数据合并" class="headerlink" title="4.数据合并"></a>4.数据合并</h3><ul>
+<li><p>数据横向合并<br><img src="/2019/11/18/1-Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/E:%5Chexo%5Cblog1%5Csource_posts%5C1-Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%5C18342389-74d56953043e8e42.png" alt="image.png"></p>
+</li>
+<li><p>数据纵向合并<br><img src="/2019/11/18/1-Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/E:%5Chexo%5Cblog1%5Csource_posts%5C1-Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%5C18342389-e9cea76b1d363b98.png" alt="image.png"></p>
+</li>
+</ul>
+<p>拆分字符串：2019-07-02</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use E:\Stata\data\serviceData2019.dta</span><br><span class="line">gen year=substr(服务时间,1,4)</span><br><span class="line">gen month=substr(服务时间,6,2)</span><br><span class="line">gen day=substr(服务时间,9,2)</span><br><span class="line">gen date=substr(服务时间,1,10) //20190702</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="5-数据的长宽转换"><a href="#5-数据的长宽转换" class="headerlink" title="5. 数据的长宽转换"></a>5. 数据的长宽转换</h2><p><code>reshape long english science,i(number name) j(year)</code></p>
+<p>参考：<br>《stata统计分析与应用》第二版 周光肃等著</p>
+
       
 
       
@@ -377,143 +597,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">stata</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/17/2.stata%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-3. Stata假设检验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/17/3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">Stata假设检验</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/17/3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/" class="archive-article-date">
-  	<time datetime="2019-11-17T11:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>单个总体的假设检验和两个总体的假设检验等相关内容。</p>
-<hr>
-        
-          <a class="article-more-a" href="/2019/11/17/3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/17/3.%20Stata%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-4.Stata 基本回归分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/16/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/">Stata 基本回归分析</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/16/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2019-11-16T11:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先介绍小样本OLS 、大样本OLS 的原理及操作方法，然后再介绍约束回归和非线性最小二乘的相关内容。</p>
-<hr>
-        
-          <a class="article-more-a" href="/2019/11/16/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/16/4.Stata%20%E5%9F%BA%E6%9C%AC%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/11/18/1-Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">展开全文 >></a>
         </p>
       
 
@@ -634,6 +733,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">stata</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">Stata</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
