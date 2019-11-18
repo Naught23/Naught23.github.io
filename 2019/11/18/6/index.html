@@ -6,34 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Stata 与模型修正 | Hexo</title>
+  <title>6 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在计量经济学中， 最为根本的回归方法就是普通最小二乘法C OLS ) ，该方法中有一些最为根本的经典假设，如果这些假设条件不满足，则会影响模型估计的准确性和效率。本章将依次对不满足经典假设的情况进行分析，主要包括多重共线性、异方差和内生性问题的处理。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Stata 与模型修正">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="6">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="在计量经济学中， 最为根本的回归方法就是普通最小二乘法C OLS ) ，该方法中有一些最为根本的经典假设，如果这些假设条件不满足，则会影响模型估计的准确性和效率。本章将依次对不满足经典假设的情况进行分析，主要包括多重共线性、异方差和内生性问题的处理。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118144334290-1574066074281.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Ctypora%5Cimage%5Cimage-20191118144553475.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Ctypora%5Cimage%5Cimage-20191118144643022.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118144804170-1574066077706.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118145050249-1574066081300.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118145143864-1574066084969.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118145158045-1574066086223.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118145421172-1574066088234.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Ctypora%5Cimage%5Cimage-20191118150210422.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150259171-1574066090117.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150543402-1574066092741.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150601630-1574066094627.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150643294-1574066096584.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150705475-1574066098299.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Ctypora%5Cimage%5Cimage-20191118150736171.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118151051898-1574066101081.png">
-<meta property="og:updated_time" content="2019-11-18T08:35:03.020Z">
+<meta property="og:updated_time" content="2019-11-18T08:22:23.582Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3&#x2F;E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118144334290-1574066074281.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -169,89 +150,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-6.Stata与模型修正" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-6" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Stata 与模型修正
+      6
     </h1>
   
 
         
-        <a href="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/" class="archive-article-date">
-  	<time datetime="2019-11-18T04:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
+        <a href="/2019/11/18/6/" class="archive-article-date">
+  	<time datetime="2019-11-18T08:22:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在计量经济学中， 最为根本的回归方法就是普通最小二乘法C OLS ) ，该方法中有一些最为根本的经典假设，如果这些假设条件不满足，则会影响模型估计的准确性和效率。本章将依次对不满足经典假设的情况进行分析，主要包括多重共线性、异方差和内生性问题的处理。</p>
-<hr>
-<a id="more"></a>
-
-
-
-<h2 id="1-多重共线性与逐步回归法"><a href="#1-多重共线性与逐步回归法" class="headerlink" title="1. 多重共线性与逐步回归法"></a>1. 多重共线性与逐步回归法</h2><p>​        多重共线性问题在多元线性回归分析中是很常见的， 其导致的直接后果是方程回归系数估计的标准误差变大、系数估计值的精度降低等。多重共线性的问题对于Stata 软件来说并不显著，因为Stata 会自动剔除完全的多重共线性。</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118144334290-1574066074281.png" alt="image-20191118144334290"></p>
-<p>​        当确认模型存在多重共线性时，通常有两种解决方法来消除其影响: 一种是收集更多的数据，增大样本容量;另一种是通过<strong>逐步回归</strong>，改进模型的形式。</p>
-<p>​        逐步回归法的基本原理是: 先分别拟合被解释变量对于每一个解释变量的一元回归， 并将各回归方程的拟合优度按照、大小顺序排列，然后将拟合优度最大的解释变量作为基础变量， 逐渐将其他解释变量加入模型中并同时观测 t 检验值的变化，如果 t 检验显著，则保留该变量， 否则去除，不断重复此过程直到加入所有显著的解释变量。</p>
-<p>变量主要包括:y=旅游收入(单位:万元) ,Xl=某市旅游人数(单位: 人) , X2=城镇居民人均旅游支出(单位: 元) , X3=农村居民人均旅游支出(单位: 元) , X4=公路里程(单位:公里) , X5=铁路里程(单位:公里〉。</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118144553475.png" alt="image-20191118144553475"></p>
-<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><ol>
-<li><p>估计方程</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118144643022.png" alt="image-20191118144643022"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use c:\data\lvyou.dta,clear</span><br><span class="line">regress Y Xl X2 X3 X4 X5</span><br></pre></td></tr></table></figure>
-
-<p>​        <img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118144804170-1574066077706.png" alt="image-20191118144804170"></p>
-<p>​        通过判断可以发现:整个模型的拟合优度较高，但是变量X1 和X5 未通过t 检验，且X5 的系数为负，与常理违背，因为在通常情况下，随着铁路里程的增加，交通更加方便，所以旅游收入应该增加。综上所述，可以初步认为该模型存在多重共线性。</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>多重共线性检验</p>
-<p>​        多重共线性的检验通常采取两种方法: 一种是计算<strong>膨胀因子</strong>，另一种是计算<strong>变量之间的相关系数</strong>，下面将会详细介绍。</p>
-<p>​    （1）计算膨胀因子</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118145050249-1574066081300.png" alt="image-20191118145050249"></p>
-<pre><code>（2）计算相关系数</code></pre><p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118145143864-1574066084969.png" alt="image-20191118145143864"></p>
-</li>
-</ol>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118145158045-1574066086223.png" alt="image-20191118145158045"></p>
-<p>​        <code>pwcorr Xl X2 X3 X4 X5</code></p>
-<p>​        <img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118145421172-1574066088234.png" alt="image-20191118145421172"></p>
-<ol start="3">
-<li><p>逐步回归法</p>
-<p>（1）手动逐步回归法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">regress Y Xl</span><br><span class="line">regress Y X2</span><br><span class="line">regress Y X3</span><br><span class="line">regress Y X4</span><br><span class="line">regress Y X5</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118150210422.png" alt="image-20191118150210422"></p>
-</li>
-</ol>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150259171-1574066090117.png" alt="image-20191118150259171"></p>
-<ul>
-<li><p>X5加入方程：</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150543402-1574066092741.png" alt="image-20191118150543402"></p>
-</li>
-<li><p>X1加入方程</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150601630-1574066094627.png" alt="image-20191118150601630"></p>
-</li>
-<li><p>X4加入方程</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150643294-1574066096584.png" alt="image-20191118150643294"></p>
-</li>
-<li><p>X3加入方程</p>
-</li>
-</ul>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118150705475-1574066098299.png" alt="image-20191118150705475"></p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Ctypora%5Cimage%5Cimage-20191118150736171.png" alt="image-20191118150736171"></p>
-<p>（2)自动逐步回归法</p>
-<p>​        若采用前向搜寻法逐步回归，可输入如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stepwise , pe(O.05) : regress Y Xl X2 X3 X4 X5</span><br></pre></td></tr></table></figure>
-
-<p>​        其中， pe(0.05)表示运用显著性水平为5% 的前向搜寻法， regress Y X1 X2 X3 X4 X5 则是<br>指要建立回归模型。</p>
-<p><img src="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/E:%5Chexo%5Cblog1%5Csource_posts%5Cimage%5Cimage-20191118151051898-1574066101081.png" alt="image-20191118151051898"></p>
-<h2 id="2-异方差检验与处理"><a href="#2-异方差检验与处理" class="headerlink" title="2.异方差检验与处理"></a>2.异方差检验与处理</h2>
+        
       
 
       
@@ -340,7 +259,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3aQW7kMAwEwPn/pxNgsYcFAjvdouSZBUonw+MoKh0smuTrFY+vP+Pf6593kuurO/n914mBh4eHt7T0q3E1dbKsqwXdz5asIXkeDw8P7zQvOQwSWPL8Paw9in6x4OHh4b2VN3ny/vWdHzx4eHh4/xfvfim7eJPEBB4eHt6TvCQRsDdlkIfm7Xrw8PDwTvPWCmDvvT5e38PDw8Nbqqonr902/G1nXjtm/v4VHh4e3gFekqJNjook3bD2TPLrLyvHw8PD28pLSPfPrIXFk6RDsfV4eHh4x3h5i0DbUrDWXNUeYEUwjYeHh7eJNwmd20J+Xu66T0BEm4uHh4d3gLe3MLbWhrXWmJXg8fDw8E7w2rLWGn5vp0MRWOPh4eE9wpsExxPkriRIlGvBw8PDm8axxUTtUvKyVv4rHh4e3ifw2lxFTt0bmi+mLfDw8PC28vJXcN4KME9StNt6qcDDw8M7wJvUytpG1Tyuz1sEii8GPDw8vGO8NhTOi2drTbFrbQR4eHh453hJq2j+z9oiWTt/G+jj4eHhneAlIexakndbLa7cpqI/Ag8PD2/My1+7k0VPEsdriQ88PDy8Z3g5KS9ETTZx7SjCw8PDe4Y3KV/l6Yx5a0IR7uPh4eEd4yXFqna57TM5ptgOPDw8vAO8te/3PGieLDoP5V/5wMPDwxvz2qnXEhZ5u8D8KMLDw8N7hreWSmhf320w3Q48PDy807yvckyoezOr0Xrw8PDwDvDWXrj5RHmqYq2c1ob+eHh4eLt4bctUm5bNAfex/+LBgIeHh3eM1zZjzUPtvYkJPDw8vE/m5SHvro6G0fcBHh4e3lt5bSF/kmKYFNLw8PDwnuG1Ra95mSq/06aP8fDw8E7zJp/6ebo2CYjbY6M9lvDw8PDGvG9PZe4DyoyZEAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABvElEQVR42u3aQW7DMAwEwPz/0+61QBB3SUqKUYxOgeHYIx8IaanXKx7X2/h9/f2eT/+9v3PZwMXFHXOv23HPTZ6QPCf5Ly4u7nnup4qx6ncyjXsDLi7uk7n5qqP3CXBxcf8Tt4rDxcV9Pre3BMlzjC/s1XBxcQfc3ivX/t6S7+Li4ra4V3H0JlMtWx/fjouLe4SbF5QqOrnSfC8uLu5m7mT7MTlUUY1fo10ULi7uUm4eVk4aKnkpjFZkuLi427h5OZvHJclxrqjRgouLu5mbz2kScOSLmPsp4eLinuHmRyjuET3W6NgHLi7uNm5+5CIPRyaNlj8mhouLe4Q7iSd6QWqyiMnfhYuLu4ObF6+1BagaiODi4p7kJmFEL/qsBq+FdiwuLu5BbjX46JWhSdsVFxf3PHdH5JGXv+RD4OLifou7Kvp8DUaU2eDi4m7jXsWRbJCSItWcJC4u7hFutbhUW7DJ9mm+zMLFxd3BrbZUq02UeSnExcX9Fre6KeqFoQsaKri4uA/mJmUr2d5Umyu4uLjP5CbE6nKn8LFwcXEPcntHMOfbpGrLFhcX9wy3uv1IppQ3a/MFEy4u7hHuD6dgAS8YCy73AAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -354,18 +273,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/11/18/6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          6
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/11/17/1.Stata%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Stata数据处理</div>
+    <a href="/2019/11/18/6.Stata%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%AD%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Stata 与模型修正</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -392,7 +302,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-多重共线性与逐步回归法"><span class="toc-number">1.</span> <span class="toc-text">1. 多重共线性与逐步回归法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实验"><span class="toc-number">1.1.</span> <span class="toc-text">实验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-异方差检验与处理"><span class="toc-number">2.</span> <span class="toc-text">2.异方差检验与处理</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
